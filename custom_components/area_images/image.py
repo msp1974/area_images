@@ -5,14 +5,16 @@ Blah blah
 import logging
 import mimetypes
 import os
-from config.custom_components.area_images import DOMAIN, SIGNAL_UPDATE_AREA_IMAGE
+
+from homeassistant.components.image import ImageEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import area_registry
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.components.image import ImageEntity
 from homeassistant.util.dt import now
+
+from . import DOMAIN, SIGNAL_UPDATE_AREA_IMAGE
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -64,7 +66,7 @@ class AreaImage(ImageEntity):
             except FileNotFoundError:
                 _LOGGER.warning(
                     "Could not read %s area image from file: %s",
-                    self._name,
+                    self._area.name,
                     self._area_image_path,
                 )
         return None
@@ -74,7 +76,7 @@ class AreaImage(ImageEntity):
         if not os.access(file_path, os.R_OK):
             _LOGGER.warning(
                 "Could not read %s area image from file: %s",
-                self._name,
+                self._area.name,
                 file_path,
             )
 
@@ -89,7 +91,6 @@ class AreaImage(ImageEntity):
     @callback
     def _update_callback(self, *args) -> None:
         """Call update method."""
-        _LOGGER.warning(f"Updating - {args}")
         if self._area.id in args:
             area_reg = area_registry.async_get(self.hass)
             self._area = area_reg.async_get_area(self._area.id)
