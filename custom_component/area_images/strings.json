@@ -1,0 +1,14 @@
+{
+    "title": "Area Images",
+    "config": {
+        "step": {
+            "user": {
+                "title": "Area Images",
+                "description": "Do you want to setup Area Images?"
+            }
+        },
+        "abort": {
+            "already_configured": "Only 1 instance of Area Images can be configured."
+        }
+    }
+}

@@ -1,0 +1,13 @@
+{
+  "domain": "area_images",
+  "name": "Area Images",
+  "config_flow": true,
+  "documentation": "https://github.com/msp1974/area_images",
+  "iot_class": "calculated",
+  "version": "v1.0.0",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": [
+    "@msp1974"
+  ]
+}
