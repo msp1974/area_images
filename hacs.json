@@ -1,0 +1,6 @@
+{
+    "name": "Area Images",
+    "render_readme": false,
+    "iot_class": "Calculated",
+    "homeassistant": "2023.1.0"
+}
